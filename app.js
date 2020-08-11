@@ -30,6 +30,11 @@
         return movie.genre.toLowerCase().includes(genre.toLowerCase())
       })
     }
+    if(country) {
+        filteredMovies = filteredMovies.filter(movie => {
+          return movie.country.toLowerCase().includes(country.toLowerCase());
+        })
+    }
   res.json(filteredMovies);
   })
 
