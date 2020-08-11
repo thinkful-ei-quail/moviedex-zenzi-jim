@@ -22,9 +22,14 @@
   });
  
   app.get('/movie', (req, res) => {
-    const filteredMovies = [...moviesdata];
+    let filteredMovies = [...moviesdata];
     const {genre, country, avg_vote} = req.query;
     //do a bunch of stuff
+    if(genre) {
+      filteredMovies = filteredMovies.filter(movie => {
+        return movie.genre.toLowerCase().includes(genre.toLowerCase())
+      })
+    }
   res.json(filteredMovies);
   })
 
