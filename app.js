@@ -35,6 +35,16 @@
           return movie.country.toLowerCase().includes(country.toLowerCase());
         })
     }
+    if(avg_vote) {
+      const floatVote = parseFloat(avg_vote);
+      if (Number.isNaN(floatVote)) {
+        res.status(400).send('avg_vote must be a number')
+      }
+      filteredMovies = filteredMovies.filter(movie => {
+        return parseFloat(movie.avg_vote) >= floatVote
+      })
+    }
+   
   res.json(filteredMovies);
   })
 
