@@ -3,7 +3,7 @@
   const helmet = require('helmet');
   const cors = require('cors');
   const morgan = require('morgan');
-  const moviesdata = require('./movieData');
+  const moviesdata = require('./movieData.js');
   
 
   const app = express()
@@ -20,10 +20,12 @@
     }
     next();
   });
-
+ 
   app.get('/movie', (req, res) => {
+    const filteredMovies = [...moviesdata];
     const {genre, country, avg_vote} = req.query;
-  res.send('hello');
+    //do a bunch of stuff
+  res.json(filteredMovies);
   })
 
   app.listen(8080, () => {
