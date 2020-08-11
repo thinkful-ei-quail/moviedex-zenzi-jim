@@ -13,5 +13,30 @@
   app.use(cors())
 
   app.use(function validateBearerToken(req, res, next) {
-
+    const bearerToken = req.get("Authorization").split(" ")[1];
+    const apiToken = "secretKey";
+    if(bearerToken !== apiToken) {
+      return res.status(401).json({error:"unauthorized request"})
+    }
+    next();
   });
+
+  app.get('/movie', (req, res) => {
+    const {genre, country, avg_vote} = req.query;
+  res.send('hello');
+  })
+
+  app.listen(8080, () => {
+    console.log('server start at port 8080')
+  })
+    //create endpoint info
+    //create search query variables
+    //validate data
+    //create genre filter
+    //create country filter
+    //create genre conditional statements
+    // create country conditonal statements
+    //avg vote conditionals
+    //API response
+    //Authorizatio Bearer
+    //secutiry & cors support
